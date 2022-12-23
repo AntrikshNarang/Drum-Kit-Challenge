@@ -4,6 +4,7 @@ for(var i=0;i<document.querySelectorAll(".drum").length;i++){
     document.querySelectorAll(".drum")[i].addEventListener("click",function(){
         var buttonClicked = this.textContent;
         makeSound(buttonClicked);
+        animate(buttonClicked);
     });
 }
 
@@ -11,6 +12,7 @@ for(var i=0;i<document.querySelectorAll(".drum").length;i++){
 document.addEventListener("keydown",function(event){
     var pressedKey = event.key;
     makeSound(pressedKey);
+    animate(pressedKey);
 });   
 
 //Function for making sound
@@ -49,4 +51,13 @@ function makeSound(key){
             console.log(key);
             break;
     }
+}
+
+//Function for Animation
+function animate(key){
+    var activeButton = ("." + key);
+    document.querySelector(activeButton).classList.add("pressed");
+    setTimeout(function() {
+        document.querySelector(activeButton).classList.remove("pressed");       
+    }, 100);
 }
